@@ -9,22 +9,20 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt update && sudo apt install -y cmake g++ clang catch2
+        run: |
+          sudo apt update
+          sudo apt install -y ninja-build cmake g++ catch2
 
       - name: Configure CMake
         run: |
           mkdir build
           cd build
-          cmake .. -DCMAKE_CXX_COMPILER=${{ matrix.compiler }}
+          cmake -G Ninja ..
 
       - name: Build
         run: |
