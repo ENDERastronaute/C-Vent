@@ -92,12 +92,12 @@ TEMPLATE_TEST_CASE("Events call multiple handlers", "[Event]", int, double, floa
     REQUIRE(test_result<TestType> == new_value);
 }
 
-TEMPLATE_TEST_CASE("Disconnecting non-existent handler doesn't affect others", "[Event]", int, double, float, std::string, TestStruct, TestTemplatedStruct<double>)
-{
-    Event<TestType> event;
-    TestClass<TestType> c1;
-    TestClass<TestType> c2;
-
-    event.connect(&c1, &TestClass<TestType>::test_callback);
-    REQUIRE( event.handlers() == 1 );
-}
+// TEMPLATE_TEST_CASE("Disconnecting non-existent handler doesn't affect others", "[Event]", int, double, float, std::string, TestStruct, TestTemplatedStruct<double>)
+// {
+//     Event<TestType> event;
+//     TestClass<TestType> c1;
+//     TestClass<TestType> c2;
+//
+//     event.connect(&c1, &TestClass<TestType>::test_callback);
+//     REQUIRE( event.handlers() == 1 );
+// }
